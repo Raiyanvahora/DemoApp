@@ -1,0 +1,451 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =============================================
+   DESIGN TOKENS
+   ============================================= */
+
+:root {
+  /* WhatsApp brand */
+  --whatsapp: #25D366;
+  --whatsapp-dark: #128C7E;
+}
+
+/* =============================================
+   BASE STYLES
+   ============================================= */
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+  }
+
+  body {
+    @apply bg-gray-50 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    color: #111827;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
+  p, span, li {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* =============================================
+   TYPOGRAPHY SCALE
+   ============================================= */
+
+@layer components {
+  .text-page-title {
+    @apply text-[1.375rem] font-bold leading-tight tracking-tight;
+    color: #111827;
+  }
+
+  .text-section-title {
+    @apply text-lg font-semibold leading-snug tracking-tight;
+    color: #111827;
+  }
+
+  .text-card-title {
+    @apply text-base font-semibold leading-snug;
+    color: #1f2937;
+  }
+
+  .text-body {
+    @apply text-[0.9375rem] font-normal leading-relaxed;
+    color: #374151;
+  }
+
+  .text-label {
+    @apply text-[0.8125rem] font-medium leading-normal;
+    color: #4b5563;
+  }
+
+  .text-muted {
+    @apply text-[0.8125rem] font-normal leading-relaxed;
+    color: #6b7280;
+  }
+
+  .text-micro {
+    @apply text-xs font-normal leading-normal;
+    color: #9ca3af;
+  }
+
+  .text-tiny {
+    @apply text-[0.6875rem] font-medium uppercase tracking-wide leading-none;
+    color: #6b7280;
+  }
+
+  .text-price {
+    @apply text-lg font-bold tracking-tight tabular-nums;
+    color: #059669;
+  }
+
+  .text-price-large {
+    @apply text-2xl font-extrabold tracking-tight tabular-nums;
+    color: #059669;
+  }
+
+  .text-status-active {
+    @apply text-[0.8125rem] font-semibold;
+    color: #059669;
+  }
+
+  .text-status-inactive {
+    @apply text-[0.8125rem] font-medium;
+    color: #9ca3af;
+  }
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 text-white font-semibold py-4 px-7 rounded-2xl
+           active:scale-[0.97] transition-all duration-150
+           hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed
+           text-[0.9375rem] min-h-[56px] flex items-center justify-center gap-2;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+  }
+
+  .btn-primary:active {
+    box-shadow: 0 1px 4px rgba(5, 150, 105, 0.2);
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary-600 font-semibold py-4 px-7 rounded-2xl
+           border-2 border-primary-600 active:scale-[0.97] transition-all duration-150
+           hover:bg-primary-50 text-[0.9375rem] min-h-[56px] flex items-center justify-center gap-2;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-secondary:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .btn-secondary:active {
+    box-shadow: none;
+  }
+
+  .btn-tertiary {
+    @apply bg-gray-50 text-gray-800 font-semibold py-4 px-7 rounded-2xl
+           border border-gray-200 active:scale-[0.97] transition-all duration-150
+           hover:bg-white text-[0.9375rem] min-h-[56px] flex items-center justify-center gap-2;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-ghost {
+    @apply text-gray-600 font-medium py-3 px-5 rounded-xl
+           active:bg-gray-100 transition-all duration-150 text-[0.9375rem] min-h-[48px];
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-ghost:hover {
+    @apply bg-gray-50;
+  }
+
+  /* WhatsApp CTA - Strongest visual element */
+  .btn-whatsapp {
+    @apply text-white font-semibold py-5 px-7 rounded-2xl
+           active:scale-[0.97] transition-all duration-150
+           text-[1.0625rem] min-h-[64px] flex items-center justify-center gap-2.5;
+    background: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-whatsapp::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  }
+
+  .btn-whatsapp:hover {
+    background: linear-gradient(135deg, #22c55e 0%, #0f766e 100%);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  }
+
+  .btn-whatsapp:active {
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  }
+}
+
+/* =============================================
+   CARDS
+   ============================================= */
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-2xl;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Membership Card */
+  .membership-card {
+    @apply bg-white rounded-2xl p-6 relative overflow-hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .membership-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #059669 0%, #10b981 100%);
+  }
+
+  .membership-card.active {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    @apply text-white border-0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  }
+
+  .membership-card.active::before {
+    display: none;
+  }
+
+  .card-badge {
+    @apply inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-600
+           px-3 py-1.5 rounded-full text-[0.75rem] font-semibold uppercase tracking-wide mb-3;
+  }
+
+  .membership-card.active .card-badge {
+    @apply bg-white/20 text-white;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full bg-emerald-500;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+}
+
+/* =============================================
+   DELIVERY INFO
+   ============================================= */
+
+@layer components {
+  .delivery-info {
+    @apply flex items-start gap-3 bg-white p-4 rounded-2xl mb-5;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .delivery-icon {
+    @apply w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-xl flex-shrink-0;
+  }
+
+  .slot-badge {
+    @apply inline-flex items-center gap-1 bg-gray-50 text-gray-600
+           px-2.5 py-1.5 rounded-lg text-[0.75rem] font-medium;
+  }
+}
+
+/* =============================================
+   PRODUCT CARDS
+   ============================================= */
+
+@layer components {
+  .product-card {
+    @apply bg-white rounded-2xl p-3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .product-card:active {
+    transform: scale(0.99);
+  }
+
+  .product-image {
+    @apply w-full aspect-square rounded-xl flex items-center justify-center text-4xl mb-3 overflow-hidden;
+    background: linear-gradient(135deg, #f8faf8 0%, #f0f4f0 100%);
+  }
+
+  .product-image img {
+    @apply w-full h-full object-cover rounded-xl transition-transform duration-200;
+  }
+
+  .product-card:active .product-image img {
+    @apply scale-[1.02];
+  }
+
+  .product-category {
+    @apply text-[0.6875rem] font-medium uppercase tracking-wider text-gray-400 mb-0.5;
+  }
+
+  .product-footer {
+    @apply flex items-center justify-between mt-2;
+  }
+}
+
+/* =============================================
+   QUANTITY CONTROLS
+   ============================================= */
+
+@layer components {
+  .qty-btn {
+    @apply w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center
+           text-gray-600 text-lg font-medium transition-all;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .qty-btn:active {
+    @apply bg-primary-600 text-white scale-95;
+  }
+
+  .qty-btn-plus {
+    @apply bg-primary-600 text-white;
+  }
+
+  .qty-btn-plus:hover {
+    @apply bg-primary-700;
+  }
+
+  .qty-btn-plus:active {
+    @apply bg-primary-700 scale-95;
+  }
+}
+
+/* =============================================
+   STICKY CART BAR
+   ============================================= */
+
+@layer components {
+  .sticky-cart-bar {
+    @apply fixed left-1/2 -translate-x-1/2 bg-white rounded-2xl z-40
+           p-3 px-4 flex items-center justify-between gap-3;
+    bottom: calc(88px + 8px);
+    width: calc(100% - 32px);
+    max-width: 448px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .sticky-cart-icon {
+    @apply w-11 h-11 bg-emerald-50 rounded-xl flex items-center justify-center text-xl;
+  }
+}
+
+/* =============================================
+   PROFILE MENU
+   ============================================= */
+
+@layer components {
+  .profile-menu-item {
+    @apply w-full flex items-center justify-between px-5 py-4 min-h-[56px]
+           border-b border-gray-100 transition-all text-[0.9375rem] font-medium text-gray-800;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .profile-menu-item:last-child {
+    @apply border-b-0;
+  }
+
+  .profile-menu-item:hover {
+    @apply bg-gray-50;
+  }
+
+  .profile-menu-item:active {
+    @apply bg-gray-100;
+  }
+}
+
+/* =============================================
+   UTILITIES
+   ============================================= */
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* =============================================
+   DARK MODE
+   ============================================= */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gray-950 text-gray-100;
+  }
+
+  .card, .product-card, .membership-card, .delivery-info {
+    @apply bg-gray-900;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .membership-card::before {
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  }
+
+  .product-image {
+    background: linear-gradient(135deg, #1a1f1a 0%, #232823 100%);
+  }
+
+  .btn-tertiary {
+    @apply bg-gray-800 text-gray-100 border-gray-700 hover:bg-gray-700;
+  }
+
+  .sticky-cart-bar {
+    @apply bg-gray-900;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .card-badge {
+    @apply bg-emerald-900/50 text-emerald-400;
+  }
+}

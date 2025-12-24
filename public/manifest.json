@@ -1,0 +1,21 @@
+{
+  "name": "Sharma Grocery Store",
+  "short_name": "Sharma Grocery",
+  "description": "Your neighborhood grocery store with free delivery membership",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "food"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
