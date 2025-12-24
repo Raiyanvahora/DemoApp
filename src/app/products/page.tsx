@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
@@ -9,7 +9,7 @@ import BottomNav from '@/components/BottomNav';
 import { products, categories } from '@/data/products';
 import { useStore } from '@/lib/store';
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') || 'all';
   const [activeCategory, setActiveCategory] = useState(initialCategory);
@@ -116,5 +116,35 @@ export default function ProductsPage() {
       <CartBar />
       <BottomNav />
     </main>
+  );
+}
+
+function ProductsLoading() {
+  return (
+    <main className="bg-gray-50 min-h-screen pb-32">
+      <header className="bg-purple-600 text-white px-4 pt-12 pb-4">
+        <div className="h-9 bg-white/20 rounded-full w-32 mb-4 animate-pulse"></div>
+        <div className="h-12 bg-white/20 rounded-xl animate-pulse"></div>
+      </header>
+      <div className="px-4 py-4">
+        <div className="grid grid-cols-2 gap-3">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="bg-white rounded-2xl p-3 animate-pulse">
+              <div className="aspect-square bg-gray-200 rounded-xl mb-3"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsContent />
+    </Suspense>
   );
 }
